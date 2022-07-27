@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-    res.send('Router Test')
+    res.send('Index Routes')
   })
 
-module.exports = router;
+export default router

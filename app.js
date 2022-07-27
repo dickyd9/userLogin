@@ -1,62 +1,44 @@
 // import express
-const express = require('express');
-const app = express();
+import express from 'express';
 const port = 5000;
+const app = express();
+// db
+import db from './config/connect_db.js';
 
 //import library
-const cors = require('cors');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const methodOverride = require('method-override');
-const bodyParser = require('body-parser');
+import cors from 'cors';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import methodOverride from 'method-override';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+
+dotenv.config()
+
+try {
+  await db.authenticate();
+  console.log('Database Connected...')
+} catch (error) {
+  console.log(error);
+}
+
 
 // import router
-const indexRouter = require('./routes');
-const hotelRouter = require('./hotel/route');
+import usersRouter from './modules/user/route.js';
 
 //app use
 app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.json());
 
 // use Router
-app.use('/', indexRouter);
-app.use('/hotel', hotelRouter);
+app.use(usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handlers
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
 
 app.listen(port, () => {
   console.log(`app running at http://localhost:${port}`)
 })
-
-module.exports = app;
