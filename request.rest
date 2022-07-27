@@ -1,0 +1,22 @@
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoic3VwZXIgYWRtaW4iLCJlbWFpbCI6IlNBZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE2NTg5MjEzMzcsImV4cCI6MTY1ODkyMTM1N30.keKPRjeeMc8gg1Ri6pDWmSCOeDC6K4TypbwV5bzlZiE
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "username" : "super admin",
+    "email" : "SAdmin@gmail.com",
+    "password" : "Sadmin",
+    "confirmPassword" : "Sadmin"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email" : "SAdmin@gmail.com",
+    "password" : "Sadmin"
+}
