@@ -1,13 +1,14 @@
 GET http://localhost:5000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoic3VwZXIgYWRtaW4iLCJlbWFpbCI6IlNBZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE2NTg5MjEzMzcsImV4cCI6MTY1ODkyMTM1N30.keKPRjeeMc8gg1Ri6pDWmSCOeDC6K4TypbwV5bzlZiE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsInVzZXJuYW1lIjoiU3VwZXJBZG1pbiIsImVtYWlsIjoiU0FkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJTdXBlciBBZG1pbiIsImlhdCI6MTY1ODk5NzM2NSwiZXhwIjoxNjU5MDgzNzY1fQ.H9xbtrL_Ue_Bz38qLEvCRkXu9pBtYpDcLhIoOo_5FSE
 
 ###
 POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "username" : "super admin",
+    "username" : "SuperAdmin",
     "email" : "SAdmin@gmail.com",
+    "role" : "Super Admin",
     "password" : "Sadmin",
     "confirmPassword" : "Sadmin"
 }
@@ -17,6 +18,6 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email" : "SAdmin@gmail.com",
+    "username" : "SuperAdmin",
     "password" : "Sadmin"
 }

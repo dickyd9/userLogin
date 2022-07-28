@@ -12,16 +12,17 @@ import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import session from "express-session"
 
 dotenv.config()
 
+// connection db
 try {
   await db.authenticate();
   console.log('Database Connected...')
 } catch (error) {
   console.log(error);
 }
-
 
 // import router
 import usersRouter from './modules/user/route.js';
@@ -34,6 +35,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.json());
+app.use(session({
+  secret: 'password is very secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 10000,
+    secure: true
+  }
+}));
+app.set('trust proxy', 1)
 
 // use Router
 app.use(usersRouter);
