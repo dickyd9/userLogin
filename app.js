@@ -30,7 +30,9 @@ try {
 import usersRouter from './modules/user/route.js';
 
 //app use
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -50,6 +52,7 @@ app.set('trust proxy', 1)
 
 // use Router
 app.use(usersRouter);
+
 
 
 app.listen(port, () => {
