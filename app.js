@@ -2,6 +2,8 @@
 import express from 'express';
 const port = 5000;
 const app = express();
+
+// 10.1.1.5:3306
 // db
 import db from './config/connect_db.js';
 
@@ -51,5 +53,5 @@ app.use(usersRouter);
 
 
 app.listen(port, () => {
-  console.log(`app running at http://localhost:${port}`)
+  console.log(`app running at 10.1.1.5:${port}`)
 })

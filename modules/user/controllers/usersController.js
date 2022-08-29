@@ -56,10 +56,10 @@ export const Login = async (req, res) => {
                 id: userId
             }
         });
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000
-        });
+        // res.cookie('refreshToken', refreshToken, {
+        //     httpOnly: true,
+        //     maxAge: 24 * 60 * 60 * 1000
+        // });
         res.status(201).json({ accessToken, refreshToken })
     } catch (error) {
         res.status(404).json({ msg: "Email tidak ditemukan" });
